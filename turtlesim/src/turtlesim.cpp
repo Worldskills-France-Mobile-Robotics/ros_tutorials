@@ -53,7 +53,7 @@ public:
   int exec()
   {
     turtlesim::TurtleFrame frame(nh_);
-    frame.show();
+    // frame.show();
 
     return QApplication::exec();
   }

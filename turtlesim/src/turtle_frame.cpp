@@ -113,7 +113,8 @@ TurtleFrame::TurtleFrame(rclcpp::Node::SharedPtr& node_handle, QWidget* parent, 
 
   width_in_meters_ = (width() - 1) / meter_;
   height_in_meters_ = (height() - 1) / meter_;
-  spawnTurtle("", width_in_meters_ / 2.0, height_in_meters_ / 2.0, 0);
+  // spawnTurtle("", width_in_meters_ / 2.0, height_in_meters_ / 2.0, 0);
+  spawnTurtle("", 0.0, 0.0, 0);
 
   // spawn all available turtle types
   if(false)
@@ -123,7 +124,8 @@ TurtleFrame::TurtleFrame(rclcpp::Node::SharedPtr& node_handle, QWidget* parent, 
       QString name = turtles[index];
       name = name.split(".").first();
       name.replace(QString("-"), QString(""));
-      spawnTurtle(name.toStdString(), 1.0f + 1.5f * (index % 7), 1.0f + 1.5f * (index / 7), static_cast<float>(PI) / 2.0f, index);
+      // spawnTurtle(name.toStdString(), 1.0f + 1.5f * (index % 7), 1.0f + 1.5f * (index / 7), static_cast<float>(PI) / 2.0f, index);
+      spawnTurtle(name.toStdString(), 0.0f, 0.0f , static_cast<float>(PI) / 2.0f, index);
     }
   }
 }
@@ -290,7 +292,8 @@ bool TurtleFrame::resetCallback(const std_srvs::srv::Empty::Request::SharedPtr, 
   RCLCPP_INFO(nh_->get_logger(), "Resetting turtlesim.");
   turtles_.clear();
   id_counter_ = 0;
-  spawnTurtle("", width_in_meters_ / 2.0, height_in_meters_ / 2.0, 0);
+  // spawnTurtle("", width_in_meters_ / 2.0, height_in_meters_ / 2.0, 0);
+  spawnTurtle("", 0.0, 0.0, 0);
   clear();
   return true;
 }
