@@ -114,7 +114,7 @@ TurtleFrame::TurtleFrame(rclcpp::Node::SharedPtr& node_handle, QWidget* parent, 
   width_in_meters_ = (width() - 1) / meter_;
   height_in_meters_ = (height() - 1) / meter_;
   // spawnTurtle("", width_in_meters_ / 2.0, height_in_meters_ / 2.0, 0);
-  spawnTurtle("", 0.0, 0.0, 0);
+  spawnTurtle("", 5.0, 5.0, 0);
 
   // spawn all available turtle types
   if(false)
@@ -187,22 +187,22 @@ std::string TurtleFrame::spawnTurtle(const std::string& name, float x, float y, 
 std::string TurtleFrame::spawnTurtle(const std::string& name, float x, float y, float angle, size_t index)
 {
   std::string real_name = name;
-  if (real_name.empty())
-  {
-    do
-    {
-      std::stringstream ss;
-      ss << "turtle" << ++id_counter_;
-      real_name = ss.str();
-    } while (hasTurtle(real_name));
-  }
-  else
-  {
-    if (hasTurtle(real_name))
-    {
-      return "";
-    }
-  }
+  // if (real_name.empty())
+  // {
+  //   do
+  //   {
+  //     std::stringstream ss;
+  //     ss << "turtle" << ++id_counter_;
+  //     real_name = ss.str();
+  //   } while (hasTurtle(real_name));
+  // }
+  // else
+  // {
+  //   if (hasTurtle(real_name))
+  //   {
+  //     return "";
+  //   }
+  // }
 
   TurtlePtr t = std::make_shared<Turtle>(nh_, real_name, turtle_images_[static_cast<int>(index)], QPointF(x, height_in_meters_ - y), angle);
   turtles_[real_name] = t;
